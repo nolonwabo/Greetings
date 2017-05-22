@@ -1,0 +1,16 @@
+body{
+  background-color: #b94646;
+    text-align: center;
+}
+h1{
+  font-size: 60px;
+}
+#input{
+  width: 150px;
+  height: 40px
+}
+#button{
+  width: 100px;
+  border-radius: 10em;
+  height: 40px;
+}

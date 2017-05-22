@@ -1,0 +1,15 @@
+<h1><u>Greeting App</u></h1>
+<form class="entry" method="post" action="/greetings">
+Name:
+<input type="text" name="name" placeholder="Please input your name" id="input">
+<br><br>
+<div class='radiobtn'>
+  <input type="radio" name="language" value="english">English
+  <input type="radio" name="language" value="afrikaans">Afrikaans
+  <input type="radio" name="language" value="isixhosa">Isixhosa
+</div>
+<input type="submit" value="Greet Me" id="button">
+</form>
+<div id="output">
+{{greet}}
+</div>
