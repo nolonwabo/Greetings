@@ -4,7 +4,6 @@ var express = require('express');
 var exphbs = require('express-handlebars');
 var bodyParser = require('body-parser');
 var app = express();
-var server = app.listen(3000);
 app.use(express.static('public'));
 app.engine('handlebars', exphbs({
   defaultLayout: 'main'
@@ -40,3 +39,7 @@ app.post('/greetings', function(req, res) {
     number: count
   })
 });
+
+
+
+var server = app.listen( process.env.PORT || 3000);
