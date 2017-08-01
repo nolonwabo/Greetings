@@ -30,7 +30,7 @@ app.post('/greetings', function(req, res) {
     message = 'Hallo , ' + name;
     count++;
   } else if (language === 'isixhosa') {
-    message = 'Hello , ' + name;
+    message = 'Molo , ' + name;
     count++;
   }
 
@@ -41,5 +41,7 @@ app.post('/greetings', function(req, res) {
 });
 
 
-
-var server = app.listen( process.env.PORT || 3000);
+var port = process.env.PORT || 3000
+var server = app.listen(port, function(){
+  console.log("Started app on port : " + port)
+});
