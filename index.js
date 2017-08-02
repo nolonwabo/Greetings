@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({
 }))
 app.use(bodyParser.json())
 
-app.get('/greetings', function(req, res) {
+app.get('/', function(req, res) {
   var name = req.body.name;
   res.render('index');
 });
