@@ -3,6 +3,9 @@ var countNamesGreeted = 0;
 var express = require('express');
 var exphbs = require('express-handlebars');
 var bodyParser = require('body-parser');
+var mongoose =require('mongoose');
+var Schema = mongoose.Schema;
+var Storename = require('./mongo');
 var app = express();
 app.use(express.static('public'));
 app.engine('handlebars', exphbs({
@@ -19,6 +22,7 @@ app.get('/', function(req, res) {
   res.render('index');
 });
 var count = 0;
+var namesGretted =[];
 app.post('/greetings', function(req, res) {
   var name = req.body.name;
   var language = req.body.language;
@@ -26,12 +30,24 @@ app.post('/greetings', function(req, res) {
   if (language === 'english') {
     message = 'Hello , ' + name;
     count++;
+    Storename.create({
+      name: name,
+      count: count
+    });
   } else if (language === 'afrikaans') {
     message = 'Hallo , ' + name;
     count++;
+    Storename.create({
+      name: name,
+      count: count
+    });
   } else if (language === 'isixhosa') {
     message = 'Molo , ' + name;
     count++;
+    Storename.create({
+      name: name,
+      count: count
+    });
   }
 
   res.render('index', {
@@ -39,7 +55,6 @@ app.post('/greetings', function(req, res) {
     number: count
   })
 });
-
 
 var port = process.env.PORT || 3000
 var server = app.listen(port, function(){
