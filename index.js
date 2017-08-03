@@ -1,16 +1,26 @@
 "use strict";
-var countNamesGreeted = 0;
 var express = require('express');
 var exphbs = require('express-handlebars');
 var bodyParser = require('body-parser');
 var mongoose =require('mongoose');
 var Schema = mongoose.Schema;
-var Storename = require('./mongo');
+var storeNameInst = require('./mongo');
 var app = express();
 app.use(express.static('public'));
 app.engine('handlebars', exphbs({
   defaultLayout: 'main'
 }));
+function storeValue(names, counter){
+var storingNamesGreeted = new storeNameInst.storeName ({
+  name: names,
+  count: counter
+});
+storingNamesGreeted.save(function(err){
+  if(err){
+    return err;
+  }
+})
+}
 app.set('view engine', 'handlebars');
 app.use(bodyParser.urlencoded({
   extended: false
@@ -22,32 +32,23 @@ app.get('/', function(req, res) {
   res.render('index');
 });
 var count = 0;
-var namesGretted =[];
 app.post('/greetings', function(req, res) {
+
   var name = req.body.name;
   var language = req.body.language;
   var message = '';
   if (language === 'english') {
     message = 'Hello , ' + name;
     count++;
-    Storename.create({
-      name: name,
-      count: count
-    });
+    storeValue(name, count);
   } else if (language === 'afrikaans') {
     message = 'Hallo , ' + name;
     count++;
-    Storename.create({
-      name: name,
-      count: count
-    });
+    storeValue(name, count);
   } else if (language === 'isixhosa') {
     message = 'Molo , ' + name;
     count++;
-    Storename.create({
-      name: name,
-      count: count
-    });
+    storeValue(name, count);
   }
 
   res.render('index', {

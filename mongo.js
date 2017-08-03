@@ -1,6 +1,9 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/index');
+mongoose.connect('mongodb://localhost/index', {
+  useMongoClient: true
+});
 
-var Storename = mongoose.model('Storename', { count: Number, name: String });
-
- module.exports = Storename;
+exports.storeName = mongoose.model('storeName', {
+  count: Number,
+  name: String
+});
