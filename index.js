@@ -2,7 +2,7 @@
 var express = require('express');
 var exphbs = require('express-handlebars');
 var bodyParser = require('body-parser');
-var mongoose =require('mongoose');
+var mongoose = require('mongoose');
 var storeNameInst = require('./mongo');
 var app = express();
 app.use(express.static('public'));
