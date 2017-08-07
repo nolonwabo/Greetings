@@ -3,13 +3,16 @@ var express = require('express');
 var exphbs = require('express-handlebars');
 var bodyParser = require('body-parser');
 var mongoose =require('mongoose');
-var Schema = mongoose.Schema;
 var storeNameInst = require('./mongo');
 var app = express();
 app.use(express.static('public'));
 app.engine('handlebars', exphbs({
   defaultLayout: 'main'
 }));
+var storeName = mongoose.model('storeName', {
+  count: Number,
+  name: String
+});
 function storeValue(names, counter){
 var storingNamesGreeted = new storeNameInst.storeName ({
   name: names,
@@ -31,6 +34,7 @@ app.get('/', function(req, res) {
   var name = req.body.name;
   res.render('index');
 });
+
 var count = 0;
 app.post('/greetings', function(req, res) {
 

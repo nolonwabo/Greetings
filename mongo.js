@@ -3,7 +3,12 @@ mongoose.connect('mongodb://localhost/index', {
   useMongoClient: true
 });
 
-exports.storeName = mongoose.model('storeName', {
-  count: Number,
-  name: String
-});
+const mongoURL = process.env.MONGO_DB_URL || "'mongodb://localhost/index'";
+
+mongoose.connect(mongoURL);
+
+
+// exports.storeName = mongoose.model('storeName', {
+//   count: Number,
+//   name: String
+// });
