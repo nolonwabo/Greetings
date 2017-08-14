@@ -3,7 +3,7 @@ var express = require('express');
 var exphbs = require('express-handlebars');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var mongodb = require('./mongo');
+var storeNameInst = require('./mongo');
 var app = express();
 app.use(express.static('public'));
 app.engine('handlebars', exphbs({
@@ -11,14 +11,14 @@ app.engine('handlebars', exphbs({
 }));
 
 function storeValue(name, cb) {
-  mongodb.storeName.findOne({
+  storeNameInst.storeName.findOne({
     name: name
   }, function(err, person) {
     if (err) {
       return err;
     } else if (!person) {
       console.log("nolo");
-      var storingNamesGreeted = new mongodb.storeName({
+      var storingNamesGreeted = new storeNameInst.storeName({
         name: name,
         count: 1
       });
@@ -53,7 +53,7 @@ app.post('/greetings', function(req, res) {
     message = 'Molo , ' + name;
   }
   storeValue(name, function() {
-    mongodb.storeName.count({}, function(err, count) {
+    storeNameInst.storeName.count({}, function(err, count) {
       if (err) {
         return err;
       } else {
@@ -67,7 +67,7 @@ app.post('/greetings', function(req, res) {
 });
 var counterFunction = function(req, res) {}
 app.post('/reset', function(req, res) {
-  mongodb.storeName.remove({}, function(err, remove) {
+  storeNameInst.storeName.remove({}, function(err, remove) {
     if (err) {
       return err;
     }
