@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-const mongoURL = "mongodb://nolo:nolo@ds117093.mlab.com:17093/web-applicaction";
+const mongoURL =process.env.MONGO_DB_URL || "mongodb://nolo:nolo@ds117093.mlab.com:17093/web-applicaction";
 mongoose.connect('mongoURL', {
   useMongoClient: true
 });
