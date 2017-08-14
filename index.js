@@ -9,13 +9,11 @@ app.use(express.static('public'));
 app.engine('handlebars', exphbs({
   defaultLayout: 'main'
 }));
-//var greetedNames = {};
+
 function storeValue(name, cb) {
   storeNameInst.storeName.findOne({
     name: name
   }, function(err, person) {
-    console.log(person);
-    //check if the person exist in the database, if not add the person
     if (err) {
       return err;
     } else if (!person) {
