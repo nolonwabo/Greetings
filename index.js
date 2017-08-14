@@ -77,4 +77,4 @@ app.post('/reset', function(req, res) {
 var port = process.env.PORT || 3000
 var server = app.listen(port, function() {
   console.log("Started app on port : " + port)
-})
+});

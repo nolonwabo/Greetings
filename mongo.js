@@ -7,3 +7,4 @@ exports.storeName = mongoose.model('storeName', {
   count: Number,
   name: String
  });
+   
