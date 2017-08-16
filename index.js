@@ -17,7 +17,6 @@ function storeValue(name, cb) {
     if (err) {
       return err;
     } else if (!person) {
-      console.log("nolo");
       var storingNamesGreeted = new storeNameInst.storeName({
         name: name,
         count: 1
@@ -73,6 +72,19 @@ app.post('/reset', function(req, res) {
     }
     res.render('index')
   })
+});
+app.get('/greeted',function(req, res){
+
+ storeNameInst.storeName.find({},function(err, names, personGreeted){
+   if(err){
+     console.log(err);
+   }
+   else {
+      console.log(names);
+     res.render('index',{name:names
+   })
+   }
+ })
 });
 var port = process.env.PORT || 3000
 var server = app.listen(port, function() {

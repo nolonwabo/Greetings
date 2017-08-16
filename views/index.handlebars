@@ -20,3 +20,17 @@ Name:
 <form class="entry" method="post" action="/reset  ">
   <input type="submit" value="Reset" name="reseting"></input>
 </form>
+  <br></br>
+  <form class="entry" method="post" action="/greeted">
+  <a href="/greeted" class="listOfNames">Names Greeted</a>
+
+</form>
+{{#each name}}
+<tr>
+  <td> {{this.name}}</td>
+  <td>{{this.count}}</td>
+</tr>
+{{/each}}
+<div class="display">
+  {{display}}
+</div>
