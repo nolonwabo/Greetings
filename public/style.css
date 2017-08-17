@@ -14,3 +14,7 @@ h1{
   border-radius: 10em;
   height: 40px;
 }
+ul{
+  decoration: "none";
+  list-style-type: none
+}

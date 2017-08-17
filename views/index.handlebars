@@ -26,10 +26,10 @@ Name:
 
 </form>
 {{#each name}}
-<tr>
-  <td> {{this.name}}</td>
-  <td>{{this.count}}</td>
-</tr>
+<ul>
+ <li> {{this.name}} : {{this.count}}</li>
+
+</ul>
 {{/each}}
 <div class="display">
   {{display}}

@@ -15,7 +15,7 @@ function storeValue(name, cb) {
     name: name
   }, function(err, person) {
     if (err) {
-      return err;
+      return cb(err);
     } else if (!person) {
       var storingNamesGreeted = new storeNameInst.storeName({
         name: name,
@@ -23,9 +23,8 @@ function storeValue(name, cb) {
       });
       storingNamesGreeted.save(cb)
     } else if (person) {
-      cb(null, {
-        name
-      });
+      person.count++;
+      person.save(cb);
     }
   });
 };
@@ -74,8 +73,7 @@ app.post('/reset', function(req, res) {
   })
 });
 app.get('/greeted',function(req, res){
-
- storeNameInst.storeName.find({},function(err, names, personGreeted){
+ storeNameInst.storeName.find({},function(err, names){
    if(err){
      console.log(err);
    }
